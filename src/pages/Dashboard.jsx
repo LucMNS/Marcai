@@ -83,7 +83,7 @@ export default function Dashboard({ userName, onLogout }) {
 
   const pad = (n) => n.toString().padStart(2, '0');
   const actualToday = new Date();
-  const todayStr = `${actualToday.getFullYear()}-${pad(actualToday.getMonth())}-${pad(actualToday.getDate())}`;
+  const todayStr = `${actualToday.getFullYear()}-${pad(actualToday.getMonth() + 1)}-${pad(actualToday.getDate())}`;
 
   useEffect(() => {
     if (isDarkMode) {
@@ -428,7 +428,7 @@ export default function Dashboard({ userName, onLogout }) {
 
        Object.keys(newSelections).forEach(dateKey => {
          const [y, m] = dateKey.split('-');
-         if (parseInt(y, 10) === year && parseInt(m, 10) === month) {
+         if (parseInt(y, 10) === year && parseInt(m, 10) === month + 1) {
            datesToDelete.push(dateKey); delete newSelections[dateKey]; 
          }
        });
@@ -447,7 +447,7 @@ export default function Dashboard({ userName, onLogout }) {
     currentMonthDays.forEach(day => {
       const dateObj = new Date(year, month, day);
       const dayOfWeek = dateObj.getDay(); 
-      const dateKey = `${year}-${pad(month)}-${pad(day)}`;
+      const dateKey = `${year}-${pad(month + 1)}-${pad(day)}`;
 
       let shouldSelect = false;
       if (action === 'all') shouldSelect = true;
@@ -702,7 +702,7 @@ export default function Dashboard({ userName, onLogout }) {
                         ))}
                         
                         {currentMonthDays.map(day => {
-                          const dateKey = `${year}-${pad(month)}-${pad(day)}`;
+                          const dateKey = `${year}-${pad(month + 1)}-${pad(day)}`;
                           const isPast = dateKey < todayStr;
                           const data = selectedDates[dateKey];
                           const isSelected = !!data;

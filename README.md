@@ -6,7 +6,7 @@ Através de um painel interativo e responsivo, os usuários podem criar servidor
 
 🌐 **Status do Projeto:** Concluído e em Produção.
 
-![Marcaí Dashboard Preview](https://via.placeholder.com/1200x600.png?text=![alt text](Dashboard.png))
+![Marcaí Dashboard Preview](./src/assets/images/Dashboard.png)
 
 ---
 
