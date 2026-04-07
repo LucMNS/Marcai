@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { supabase } from './utils/supabaseClient';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
-import UsernameSetup from './pages/UsernameSetup'; // Você precisará criar esta tela simples
+import UsernameSetup from './pages/UsernameSetup';
 
 export default function App() {
   const [session, setSession] = useState(null);
@@ -10,14 +10,12 @@ export default function App() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Pega sessão atual
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session);
       if (session) fetchProfile(session.user.id);
       else setLoading(false);
     });
 
-    // Ouve mudanças (login/logout)
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
       setSession(session);
       if (session) fetchProfile(session.user.id);
@@ -40,7 +38,6 @@ export default function App() {
 
   if (!session) return <Login />;
   
-  // Se logou mas não escolheu username único ainda
   if (!profile) return <UsernameSetup onComplete={() => fetchProfile(session.user.id)} />;
 
   return <Dashboard userName={profile.username} onLogout={() => supabase.auth.signOut()} />;

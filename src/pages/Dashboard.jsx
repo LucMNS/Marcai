@@ -11,8 +11,6 @@ for (let i = 0; i < 24; i++) {
   }
 }
 
-// --- GERADOR DE 280 AVATARES MISTURADOS ---
-// 56 nomes diferentes x 5 estilos = 280 opções únicas!
 const baseNames = [
   "Felix", "Aneka", "Jude", "Missy", "Leo", "Mia", "Sam", "Zoe", 
   "Max", "Nia", "Eli", "Ivy", "Rex", "Ava", "Ian", "Uma", 
@@ -25,18 +23,17 @@ const baseNames = [
 
 const AVATAR_OPTIONS = [];
 baseNames.forEach(name => {
-  AVATAR_OPTIONS.push(`https://api.dicebear.com/7.x/avataaars/svg?seed=${name}`); // Pessoas
-  AVATAR_OPTIONS.push(`https://api.dicebear.com/7.x/bottts/svg?seed=${name}`); // Robôs
-  AVATAR_OPTIONS.push(`https://api.dicebear.com/7.x/pixel-art/svg?seed=${name}`); // Pixel Art
-  AVATAR_OPTIONS.push(`https://robohash.org/${name}?set=set4`); // Gatinhos
-  AVATAR_OPTIONS.push(`https://robohash.org/${name}?set=set2`); // Monstros
+  AVATAR_OPTIONS.push(`https://api.dicebear.com/7.x/avataaars/svg?seed=${name}`); 
+  AVATAR_OPTIONS.push(`https://api.dicebear.com/7.x/bottts/svg?seed=${name}`); 
+  AVATAR_OPTIONS.push(`https://api.dicebear.com/7.x/pixel-art/svg?seed=${name}`); 
+  AVATAR_OPTIONS.push(`https://robohash.org/${name}?set=set4`);
+  AVATAR_OPTIONS.push(`https://robohash.org/${name}?set=set2`);
 });
 
-// Função inteligente que entende se é um link completo ou só um nome antigo
 const getAvatarUrl = (seed) => {
   if (!seed) return `https://api.dicebear.com/7.x/avataaars/svg?seed=default`;
-  if (seed.startsWith('http')) return seed; // Se já for o link novo misturado, usa direto!
-  return `https://api.dicebear.com/7.x/avataaars/svg?seed=${seed}`; // Fallback para usuários antigos
+  if (seed.startsWith('http')) return seed;
+  return `https://api.dicebear.com/7.x/avataaars/svg?seed=${seed}`;
 };
 
 const GROUP_COLORS = ['bg-primary', 'bg-[#4CAF50]', 'bg-[#FF9800]', 'bg-[#E91E63]', 'bg-[#9C27B0]', 'bg-[#00BCD4]'];
@@ -107,7 +104,6 @@ export default function Dashboard({ userName, onLogout }) {
         setUserId(user.id);
         fetchGroups(user.id);
         
-        // --- ADICIONE ESTAS 4 LINHAS ---
         const { data: profileData } = await supabase.from('profiles').select('avatar_seed').eq('id', user.id).single();
         if (profileData && profileData.avatar_seed) {
           setUserAvatar(profileData.avatar_seed);
@@ -175,7 +171,6 @@ export default function Dashboard({ userName, onLogout }) {
     }
   };
 
-  // --- O CÉREBRO ATUALIZADO DOS MATCHES ---
   const fetchGroupMatches = async (groupId) => {
     const { count: totalMembers } = await supabase.from('group_members').select('*', { count: 'exact', head: true }).eq('group_id', groupId);
     const { data: allAvails } = await supabase.from('availabilities').select('date_key').eq('group_id', groupId);
@@ -190,15 +185,12 @@ export default function Dashboard({ userName, onLogout }) {
         const count = dateCounts[date];
         const percentage = count / members;
         
-        // 1. Data Perfeita (75% ou mais)
         if (percentage >= 0.75) {
           matches[date] = { count, type: 'perfect' }; 
         } 
-        // 2. Dia em Potencial (5 ou mais pessoas)
         else if (count >= 5) {
           matches[date] = { count, type: 'potential' }; 
         } 
-        // 3. Ótima Data (Maioria simples)
         else if (members >= 3 && count >= Math.ceil(members / 2)) {
           matches[date] = { count, type: 'good' }; 
         }
@@ -496,12 +488,10 @@ export default function Dashboard({ userName, onLogout }) {
   return (
     <div className="text-on-surface font-body bg-surface h-screen overflow-hidden flex relative transition-colors duration-300">
       
-      {/* FUNDO ESCURO MOBILE (Fecha o menu se clicar fora dele) */}
       {isMobileMenuOpen && (
         <div className="fixed inset-0 bg-black/60 z-[60] md:hidden backdrop-blur-sm" onClick={() => setIsMobileMenuOpen(false)}></div>
       )}
 
-      {/* 1. BARRA EXTREMA ESQUERDA (Agora Responsiva) */}
       <nav className={`absolute md:relative w-16 h-full bg-[#1A1814] flex flex-col items-center py-4 gap-3 z-[70] shrink-0 shadow-2xl transition-transform duration-300 ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}`}>
         <div className="group relative flex items-center justify-center cursor-pointer">
           <div className={`absolute left-0 w-1 bg-surface rounded-r-full transition-all duration-300 ${!activeGroup ? 'h-8' : 'h-0 opacity-0 group-hover:h-4 opacity-50'}`}></div>
@@ -544,10 +534,8 @@ export default function Dashboard({ userName, onLogout }) {
 
       <div className="flex-1 relative flex h-full min-w-0">
         
-        {/* NAVBAR SUPERIOR FIXA (SEMPRE ESCURA) */}
         <nav className="absolute top-0 w-full z-50 flex justify-between items-center px-6 py-2 bg-[#1A1814] border-b border-black/20 shadow-sm h-14 transition-colors duration-300">
           <div className="flex items-center gap-3">
-            {/* BOTÃO MOBILE (Fica invisível no PC, aparece no celular) */}
             <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="md:hidden text-[#e9e2d3] hover:text-primary transition-colors p-1 -ml-3">
               <span className="material-symbols-outlined text-[26px]">menu</span>
             </button>
@@ -593,7 +581,6 @@ export default function Dashboard({ userName, onLogout }) {
           </div>
         </nav>
 
-        {/* Sidebar Interna do Grupo (Agora Responsiva) */}
         {activeGroup && (
           <aside className={`absolute md:relative left-16 md:left-0 h-full flex flex-col p-4 pt-20 bg-inverse-surface w-56 rounded-r-[2rem] shadow-md z-[65] md:z-40 border-r border-outline-variant/10 shrink-0 transition-transform duration-300 ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-[150%] md:translate-x-0'}`}>
             <div className="mb-6 px-2 flex justify-between items-start">
@@ -636,7 +623,6 @@ export default function Dashboard({ userName, onLogout }) {
                     const match = groupMatches[dateKey];
                     const [, mo, d] = dateKey.split('-');
                     
-                    // CORES DINÂMICAS PARA OS MATCHES NA SIDEBAR
                     let bgBorderClass = 'bg-primary border-primary';
                     let textIconClass = 'text-on-primary';
                     let iconName = 'mood';
@@ -680,7 +666,6 @@ export default function Dashboard({ userName, onLogout }) {
             </div>
           ) : (
             <>
-              {/* --- ABA CALENDÁRIO --- */}
               {activeTab === 'calendar' && (
                 <div className="flex flex-col h-full animate-fade-in">
                   <header className="mb-4 relative shrink-0">
@@ -877,7 +862,6 @@ export default function Dashboard({ userName, onLogout }) {
                 </div>
               )}
 
-              {/* --- ABA MEMBROS --- */}
               {activeTab === 'members' && (
                 <div className="max-w-4xl mx-auto w-full flex flex-col h-full animate-fade-in">
                   <div className="flex items-center justify-between mb-6 shrink-0 border-b border-outline-variant/20 pb-4 mt-2">
@@ -943,7 +927,6 @@ export default function Dashboard({ userName, onLogout }) {
                 </div>
               )}
 
-              {/* --- ABA CONFIGURAÇÕES (GRUPO) --- */}
               {activeTab === 'settings' && (
                 <div className="max-w-3xl mx-auto w-full flex flex-col gap-6 animate-fade-in">
                   <header className="mb-2 shrink-0 mt-2">
@@ -1014,7 +997,6 @@ export default function Dashboard({ userName, onLogout }) {
         </main>
       </div>
 
-      {/* --- MODAIS PRINCIPAIS --- */}
       {showChoiceModal && (
         <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[100] flex items-center justify-center p-4 animate-fade-in">
           <div className="bg-surface-container-lowest w-full max-w-sm rounded-[24px] shadow-2xl p-8 text-center">
@@ -1159,7 +1141,6 @@ export default function Dashboard({ userName, onLogout }) {
         </div>
       )}
 
-      {/* --- O MODAL: CONFIGURAÇÕES DA CONTA (TEMA ESCURO) --- */}
       {showAccountSettings && (
         <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[100] flex items-center justify-center p-4 animate-fade-in">
           <div className="bg-surface-container-lowest w-full max-w-sm rounded-[24px] shadow-2xl p-6 relative">
@@ -1220,7 +1201,6 @@ export default function Dashboard({ userName, onLogout }) {
         </div>
       )}
 
-      {/* --- MODAL DE NOTIFICAÇÕES GERAIS --- */}
       {dialog.isOpen && (
         <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[200] flex items-center justify-center p-4 animate-fade-in">
           <div className="bg-surface-container-lowest w-full max-w-sm rounded-[24px] shadow-2xl p-6 text-center animate-fade-in" style={{ animationDuration: '0.2s' }}>

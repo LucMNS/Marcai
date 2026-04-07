@@ -81,7 +81,6 @@ export default function UsernameSetup({ onComplete }) {
                     required 
                     value={username} 
                     onChange={(e) => {
-                      // Removido o toLowerCase()! Agora aceita maiúsculas normalmente.
                       setUsername(e.target.value.replace(/\s+/g, '')); 
                       setError('');
                     }}

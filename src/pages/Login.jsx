@@ -3,7 +3,7 @@ import { supabase } from '../utils/supabaseClient';
 import '../styles/global.css';
 
 export default function Login({ onLoginSuccess }) {
-  const [view, setView] = useState('login'); // 'login', 'signup', 'recovery'
+  const [view, setView] = useState('login');
   
   const [identifier, setIdentifier] = useState('');
   const [password, setPassword] = useState('');
@@ -37,7 +37,6 @@ export default function Login({ onLoginSuccess }) {
 
       } else if (view === 'login') {
         
-        // Login por Nome de Usuário (Respeitando letras maiúsculas/minúsculas)
         if (!isEmail) {
           const cleanUsername = identifier.trim().replace('@', ''); 
           
@@ -68,7 +67,6 @@ export default function Login({ onLoginSuccess }) {
   return (
     <div className="font-body text-on-surface bg-surface min-h-screen flex items-center justify-center p-6 relative overflow-hidden">
       
-      {/* Elementos Decorativos de Fundo (Estáticos conforme pedido) */}
       <div className="absolute top-10 left-10 opacity-[0.07] transform -rotate-12 pointer-events-none">
         <span className="material-symbols-outlined text-[120px] text-tertiary">sports_esports</span>
       </div>

@@ -5,7 +5,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Be+Vietnam+Pro:ital,wght@0,100..900;1,100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap');
 
-/* ☀️ MODO CLARO */
+/* MODO CLARO */
 :root {
   --on-primary-fixed-variant: #4b472b;
   --secondary-container: #fd876f;
@@ -56,9 +56,8 @@
   --surface-container-high: #efe7d9;
 }
 
-/* 🌙 MODO ESCURO (A Paleta Quente Definitiva) */
+/* MODO ESCURO */
 .dark {
-  /* BASE */
   --background: #1E1B18;
   --surface: #1E1B18;
   --surface-container-lowest: #26221E;
@@ -67,31 +66,27 @@
   --surface-container-high: #3A342E; /* Hover */
   --surface-container-highest: #3A342E;
 
-  /* TEXTO */
   --on-surface: #EAE3D9;
   --on-background: #EAE3D9;
   --on-surface-variant: #B7AFA6;
 
-  /* DESTAQUES */
   --primary: #C6B49A;
   --on-primary: #1E1B18;
   --primary-container: #A08D74;
   --on-primary-container: #1E1B18;
 
-  /* REMOVER BORDA BRANCA SOMENTE NO MODO ESCURO (Muito Importante) */
   --outline: rgba(255, 255, 255, 0.06);
   --outline-variant: rgba(255, 255, 255, 0.06);
-  --surface-variant: #3A342E; /* Para as Tags tipo "Dia Todo" */
+  --surface-variant: #3A342E;
 
-  /* SIDEBAR INTERNA DO GRUPO */
   --inverse-surface: #26221E; 
   --inverse-on-surface: #EAE3D9;
   --inverse-primary: #C6B49A;
-  --on-tertiary-fixed-variant: #EAE3D9; /* Mantém o título do topo legível */
+  --on-tertiary-fixed-variant: #EAE3D9;
 }
 
 body {
-    background-color: var(--surface); /* Agora a cor do fundo responde ao tema! */
+    background-color: var(--surface);
     color: var(--on-surface);
     background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBXY3wW1rMS2y98lulzvXnq9pQqjS7fP2dgkd6xRAnlZKQ5G9rzqQe9g31VHp_RjNZYjkkpr4FiusdBu8R6B01_wRfsBZfMqFtTOXZnl-fmDCguYjCy_vwNSLMRU2k92ZKwNXO0hJjyQoumKHT5oMwmcAeckpXHgkCHJIblTnRyciIj2xVtU31taWIeZmaC4kp1ZnU4jQqvFL8HCggq_FdHM5_LO647MIk71pLxXyULErP8ybFT1KbxhpAnKepij_ix1QN2CTFIXg4');
     background-blend-mode: overlay;
