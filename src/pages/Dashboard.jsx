@@ -623,8 +623,8 @@ export default function Dashboard({ userName, onLogout }) {
                     const match = groupMatches[dateKey];
                     const [, mo, d] = dateKey.split('-');
                     
-                    let bgBorderClass = 'bg-primary border-primary';
-                    let textIconClass = 'text-on-primary';
+                    let bgBorderClass = 'bg-primary border-primary dark:bg-surface-container-high dark:border-outline-variant/30';
+                    let textIconClass = 'text-on-primary dark:text-on-surface-variant';
                     let iconName = 'mood';
                     
                     if (match.type === 'perfect') {
@@ -698,7 +698,7 @@ export default function Dashboard({ userName, onLogout }) {
                         ))}
                         
                         {prevMonthDays.map(day => (
-                           <div key={`prev-${day}`} className="min-h-[55px] w-full flex items-start justify-end p-2 text-outline-variant/50 text-xs font-bold bg-transparent">{day}</div>
+                           <div key={`prev-${day}`} className="min-h-[55px] w-full flex items-start justify-end p-2 text-neutral-400 text-xs font-bold bg-transparent">{day}</div>
                         ))}
                         
                         {currentMonthDays.map(day => {
@@ -725,7 +725,7 @@ export default function Dashboard({ userName, onLogout }) {
                               cellBgClass = 'bg-tertiary-container/80 border-tertiary/50';
                               textClass = 'text-on-tertiary-container';
                             } else {
-                              cellBgClass = 'bg-primary-container/80 border-primary/50';
+                              cellBgClass = 'bg-primary-container/80 border-primary/50 dark:bg-surface-container-high dark:border-outline-variant/30';
                               textClass = 'text-on-primary-container';
                             }
                           }
@@ -809,7 +809,7 @@ export default function Dashboard({ userName, onLogout }) {
                                       <div className="w-7 h-7 bg-primary-container/30 rounded-full flex items-center justify-center">
                                         <span className="material-symbols-outlined text-primary text-sm">event_available</span>
                                       </div>
-                                      <p className="text-xs font-bold text-on-surface">{monthNames[parseInt(m, 10)]}, Dia {d}</p>
+                                      <p className="text-xs font-bold text-on-surface">{monthNames[parseInt(m, 10) - 1]}, Dia {d}</p>
                                     </div>
                                     <button onClick={() => toggleDate(dateKey)} className="opacity-40 hover:opacity-100 hover:bg-error/10 transition-all p-1.5 rounded-md text-error">
                                       <span className="material-symbols-outlined text-sm">delete</span>

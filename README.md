@@ -55,4 +55,5 @@ Acesse https://marca-tau.vercel.app/
 
 ## 📝 Licença
 
-Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+© 2026 LucMNS. Todos os Direitos Reservados.
+O código-fonte deste projeto é disponibilizado publicamente apenas para fins de avaliação e demonstração de portfólio. É estritamente proibido copiar, modificar, distribuir ou utilizar este código, total ou parcialmente, para fins comerciais ou pessoais sem autorização prévia.
