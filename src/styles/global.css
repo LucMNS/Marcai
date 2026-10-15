@@ -2,8 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Be+Vietnam+Pro:ital,wght@0,100..900;1,100..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Be+Vietnam+Pro:ital,wght@0,100..900;1,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap");
 
 /* MODO CLARO */
 :root {
@@ -58,49 +58,55 @@
 
 /* MODO ESCURO */
 .dark {
-  --background: #1E1B18;
-  --surface: #1E1B18;
-  --surface-container-lowest: #26221E;
-  --surface-container-low: #26221E;
-  --surface-container: #2F2A25; /* Cards */
-  --surface-container-high: #3A342E; /* Hover */
-  --surface-container-highest: #3A342E;
+  --background: #1e1b18;
+  --surface: #1e1b18;
+  --surface-container-lowest: #26221e;
+  --surface-container-low: #26221e;
+  --surface-container: #2f2a25; /* Cards */
+  --surface-container-high: #3a342e; /* Hover */
+  --surface-container-highest: #3a342e;
 
-  --on-surface: #EAE3D9;
-  --on-background: #EAE3D9;
-  --on-surface-variant: #B7AFA6;
+  --on-surface: #eae3d9;
+  --on-background: #eae3d9;
+  --on-surface-variant: #b7afa6;
 
-  --primary: #C6B49A;
-  --on-primary: #1E1B18;
-  --primary-container: #A08D74;
-  --on-primary-container: #1E1B18;
+  --primary: #c6b49a;
+  --on-primary: #1e1b18;
+  --primary-container: #a08d74;
+  --on-primary-container: #1e1b18;
 
   --outline: rgba(255, 255, 255, 0.06);
   --outline-variant: rgba(255, 255, 255, 0.06);
-  --surface-variant: #3A342E;
+  --surface-variant: #3a342e;
 
-  --inverse-surface: #26221E; 
-  --inverse-on-surface: #EAE3D9;
-  --inverse-primary: #C6B49A;
-  --on-tertiary-fixed-variant: #EAE3D9;
+  --inverse-surface: #26221e;
+  --inverse-on-surface: #eae3d9;
+  --inverse-primary: #c6b49a;
+  --on-tertiary-fixed-variant: #eae3d9;
 }
 
 body {
-    background-color: var(--surface);
-    color: var(--on-surface);
-    background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBXY3wW1rMS2y98lulzvXnq9pQqjS7fP2dgkd6xRAnlZKQ5G9rzqQe9g31VHp_RjNZYjkkpr4FiusdBu8R6B01_wRfsBZfMqFtTOXZnl-fmDCguYjCy_vwNSLMRU2k92ZKwNXO0hJjyQoumKHT5oMwmcAeckpXHgkCHJIblTnRyciIj2xVtU31taWIeZmaC4kp1ZnU4jQqvFL8HCggq_FdHM5_LO647MIk71pLxXyULErP8ybFT1KbxhpAnKepij_ix1QN2CTFIXg4');
-    background-blend-mode: overlay;
-    transition: background-color 0.3s ease, color 0.3s ease;
+  background-color: var(--surface);
+  color: var(--on-surface);
+  background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBXY3wW1rMS2y98lulzvXnq9pQqjS7fP2dgkd6xRAnlZKQ5G9rzqQe9g31VHp_RjNZYjkkpr4FiusdBu8R6B01_wRfsBZfMqFtTOXZnl-fmDCguYjCy_vwNSLMRU2k92ZKwNXO0hJjyQoumKHT5oMwmcAeckpXHgkCHJIblTnRyciIj2xVtU31taWIeZmaC4kp1ZnU4jQqvFL8HCggq_FdHM5_LO647MIk71pLxXyULErP8ybFT1KbxhpAnKepij_ix1QN2CTFIXg4");
+  background-blend-mode: overlay;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
 }
 
 .material-symbols-outlined {
-    font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+  font-variation-settings:
+    "FILL" 0,
+    "wght" 400,
+    "GRAD" 0,
+    "opsz" 24;
 }
 
 .hearth-glow {
-    background: linear-gradient(135deg, #635f40 0%, #b2ac88 100%);
+  background: linear-gradient(135deg, #635f40 0%, #b2ac88 100%);
 }
 
 .tactile-button {
-    box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.2);
+  box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.2);
 }

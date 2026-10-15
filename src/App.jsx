@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { supabase } from './utils/supabaseClient';
-import Login from './pages/Login';
-import Dashboard from './pages/Dashboard';
-import UsernameSetup from './pages/UsernameSetup';
+import React, { useEffect, useState } from "react";
+import { supabase } from "./utils/supabaseClient";
+import Login from "./pages/Login";
+import Dashboard from "./pages/Dashboard";
+import UsernameSetup from "./pages/UsernameSetup";
 
 export default function App() {
   const [session, setSession] = useState(null);
@@ -16,7 +16,9 @@ export default function App() {
       else setLoading(false);
     });
 
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
       setSession(session);
       if (session) fetchProfile(session.user.id);
       else {
@@ -29,16 +31,31 @@ export default function App() {
   }, []);
 
   const fetchProfile = async (id) => {
-    const { data } = await supabase.from('profiles').select('*').eq('id', id).single();
+    const { data } = await supabase
+      .from("profiles")
+      .select("*")
+      .eq("id", id)
+      .single();
     setProfile(data);
     setLoading(false);
   };
 
-  if (loading) return <div className="bg-surface h-screen flex items-center justify-center text-primary font-bold">Carregando agenda...</div>;
+  if (loading)
+    return (
+      <div className="bg-surface h-screen flex items-center justify-center text-primary font-bold">
+        Carregando agenda...
+      </div>
+    );
 
   if (!session) return <Login />;
-  
-  if (!profile) return <UsernameSetup onComplete={() => fetchProfile(session.user.id)} />;
 
-  return <Dashboard userName={profile.username} onLogout={() => supabase.auth.signOut()} />;
+  if (!profile)
+    return <UsernameSetup onComplete={() => fetchProfile(session.user.id)} />;
+
+  return (
+    <Dashboard
+      userName={profile.username}
+      onLogout={() => supabase.auth.signOut()}
+    />
+  );
 }
